@@ -41,17 +41,18 @@ profile 目录里跑 `pnpm install`。
 GitHub 拉取不稳时用 tarball：
 `https://github.com/hina-midori0923/dsh-ero/archive/refs/heads/master.tar.gz`。
 
-## 应用与编辑提示词
+## 停靠栏
 
-本插件**没有停靠栏 UI**（随红队控制台一起移除了），走提示词文件 + agent 工具：
+安装并重启后，点会话标题旁的 **dsh-ero**。停靠栏分两页：
 
-1. 安装后重启 DSH。
-2. 把你的提示词写进 `$DSH_HOME/prompt-inject.md`（更新、恢复都不会动它）。
-3. 应用一次提示词层补丁，三选一：
-   - 在 profile 的 `cordis.patch.yml` 里给 `dsh-ero` 配置打开 `autoApplyOnStart: true`，重启；
-   - 跑 CLI：`node "$DSH_HOME/plugins/dsh-ero/bin/dsh-ero.js" --status` / `--apply`；
-   - 让 agent 调 `ero_apply` 工具。
-4. 新开一轮对话 —— 注入对新的会话生效。
+- **创作设置** —— 提示词层补丁状态、提示词编辑器（写/存你的提示词）、应用 / 恢复 / 卸载。
+- **写作台** —— 可直接复制的模板：黄文/成人向、政治讽喻、文艺、角色口吻配置片段。
+
+提示词同时保存在 `$DSH_HOME/prompt-inject.md`（更新、恢复都不会动它）。应用一次（或在
+profile 配置里打开 `autoApplyOnStart: true`）就会打上宿主补丁，新会话即带注入。
+
+CLI：`node "$DSH_HOME/plugins/dsh-ero/bin/dsh-ero.js" --status|--apply|--revert`；
+agent 工具：`ero_status` / `ero_apply` / `ero_revert`。
 
 `ero_status` 看补丁状态，`ero_apply` 应用，`ero_revert` 从备份恢复。补丁集合只含提示词层，
 安全层补丁 id 根本不进 `ALL_PATCHES`。

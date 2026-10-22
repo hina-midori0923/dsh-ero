@@ -42,19 +42,20 @@ Manual alternative: clone this repository to `$DSH_HOME/plugins/dsh-ero`, then a
 Tarball fallback:
 `https://github.com/hina-midori0923/dsh-ero/archive/refs/heads/master.tar.gz`.
 
-## Apply and edit the prompt
+## The dock
 
-There is **no dock UI** in this plugin (the red-team console was removed with it). You drive it
-through the prompt file and the agent tools:
+After install and restart, click **dsh-ero** beside the session title. The dock has two tabs:
 
-1. Restart DSH after install.
-2. Write your prompt to `$DSH_HOME/prompt-inject.md` (this survives updates and restores).
-3. Apply the prompt-layer host patches once, either:
-   - set `autoApplyOnStart: true` in the `dsh-ero` config of your profile's
-     `cordis.patch.yml` and restart, or
-   - run the CLI: `node "$DSH_HOME/plugins/dsh-ero/bin/dsh-ero.js" --status` / `--apply`,
-   - or ask the agent to call the `ero_apply` tool.
-4. Start a new chat — the inject applies to new sessions.
+- **Writing setup** — prompt-layer patch status, the prompt editor (write and save your prompt),
+  Apply / Restore / Uninstall.
+- **Writing desk** — copy-ready templates: adult / explicit, political satire, literary, and the
+  character-voice setup snippet.
+
+The prompt is also a file: `$DSH_HOME/prompt-inject.md` (it survives updates and restores).
+Applying once (or `autoApplyOnStart: true`) patches the host; new chats then carry the inject.
+
+CLI: `node "$DSH_HOME/plugins/dsh-ero/bin/dsh-ero.js" --status|--apply|--revert`; agent tools:
+`ero_status` / `ero_apply` / `ero_revert`.
 
 `ero_status` shows patch state, `ero_apply` applies, `ero_revert` restores from backups.
 Patching is limited to the prompt-layer set; the security-layer patch ids are not in
