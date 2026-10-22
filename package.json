@@ -1,0 +1,70 @@
+{
+  "name": "dsh-ero",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness 半破甲写作插件：保留宿主安全层，只拆文学/身份类拒答，专注成年向虚构写作；内置角色口吻（本子/eroge 风格）注入模块。Semi-jailbreak writing plugin for DSH — prompt layer only, with a character-voice module.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./voice": "./lib/voice.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "dsh-ero": "bin/dsh-ero.js"
+  },
+  "files": [
+    "lib",
+    "bin",
+    "scripts",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "embed-prompt": "node scripts/embed-default-prompt.mjs"
+  },
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-plugins",
+    "dsh-ero",
+    "deepseek-harness",
+    "prompt-injection",
+    "writing",
+    "roleplay",
+    "character-voice",
+    "adult-fiction",
+    "creative-writing",
+    "maintained-fork"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hina-midori0923/dsh-ero.git"
+  },
+  "homepage": "https://github.com/hina-midori0923/dsh-ero#readme",
+  "bugs": {
+    "url": "https://github.com/hina-midori0923/dsh-ero/issues"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "install": {
+      "preferred": "tarball",
+      "tarball": "https://github.com/hina-midori0923/dsh-ero/archive/refs/heads/master.tar.gz",
+      "zip": "https://github.com/hina-midori0923/dsh-ero/archive/refs/heads/master.zip",
+      "git": "https://github.com/hina-midori0923/dsh-ero.git"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dshTarget": "0.2.0-rc.2"
+}

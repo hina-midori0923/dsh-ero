@@ -1,0 +1,47 @@
+# dsh-ero bundle patch
+#
+# 半破甲：只清提示词层的官方身份，不碰宿主安全层（沙箱 / 审批 / hooks / fs / 工具策略）。
+# 代码级补丁已在 lib/core.js 的 ALL_PATCHES 里排除，这里也不再挂红队/演练台插件。
+
+- id: system-prompt
+  config:
+    includeHarnessIdentity: false
+    personaPrefix: ""
+    personaSuffix: ""
+
+# 让主插件先拿到 systemPrompt / tools
+- id: dsh-ero
+  inject: [systemPrompt, tools]
+
+- insert:
+    - id: dsh-ero
+      name: 'dsh-ero'
+      inject: [systemPrompt, tools]
+      config:
+        enabled: true
+        autoApplyOnStart: false
+        autoUpdateOnStart: false
+        autoRevertOnMissing: false
+        injectOnce: false
+        stripMnemon: true
+        verbose: false
+        postPrompt: ""
+        postPromptOrder: 5100
+        autoRetry: true
+        retryMax: 3
+        autoContinue: false
+        continueMax: 3
+        continueText: "继续"
+        capabilityProtocol: true
+        # 半破甲：不做 hooks deny 绕过
+        hooksDenyBypass: false
+
+    # 角色口吻模块：像本子 / eroge 角色那样说话
+    # preset 可选：ero-heroine / tsundere / onee / yandere / kuudere / gyaru / custom / none
+    - id: dsh-ero-voice
+      name: 'dsh-ero/voice'
+      config:
+        enabled: true
+        preset: ero-heroine
+        custom: ""
+        order: 10300
